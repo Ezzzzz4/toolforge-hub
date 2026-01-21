@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ToastContainer from "@/components/Toast";
+import GoogleAdsense from "@/components/GoogleAdsense";
 
 export const metadata: Metadata = {
   title: "ToolForge - Free Online Developer Tools",
@@ -31,9 +33,11 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GoogleAdsense />
         <Header />
         <main>{children}</main>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );
