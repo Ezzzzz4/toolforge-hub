@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ToastContainer from "@/components/Toast";
-import GoogleAdsense from "@/components/GoogleAdsense";
 
 export const metadata: Metadata = {
   title: "ToolForge - Free Online Developer Tools",
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
 export default function RootLayout({
   children,
@@ -31,9 +33,16 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        {adClient && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`}
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
       </head>
       <body>
-        <GoogleAdsense />
         <Header />
         <main>{children}</main>
         <Footer />
